@@ -1,0 +1,9 @@
+$ /Users/runner/work/beike-cli-probe/beike-cli-probe/bin/beike_local rent appoint --house-id 123456 --house-id 654321 --date 2026-01-02 --start 9 --end 18 --agent-ucid AU1
+elapsed: 0.00s exit: 2
+---- stdout ----
+
+---- stderr ----
+error: invalid value 'AU1' for '--agent-ucid <AGENT_UCID>': invalid digit found in string
+
+For more information, try '--help'.
+

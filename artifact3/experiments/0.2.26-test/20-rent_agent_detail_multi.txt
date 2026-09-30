@@ -1,0 +1,10 @@
+$ /Users/runner/work/beike-cli-probe/beike-cli-probe/bin/beike_local rent agent-detail -c 北京 --id ID1 --id ID2 --json
+elapsed: 0.01s exit: 0
+---- stdout ----
+{
+  "data": "{\"probe\": true, \"tool\": \"entity_detail\", \"method\": \"tools/call\", \"arguments\": {\"city_name\": \"北京\", \"entity_ids\": \"ID1,ID2\", \"entity_type\": \"rent_agent\"}}",
+  "ok": true
+}
+
+---- stderr ----
+

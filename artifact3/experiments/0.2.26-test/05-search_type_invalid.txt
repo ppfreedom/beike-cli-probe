@@ -1,0 +1,6 @@
+$ /Users/runner/work/beike-cli-probe/beike-cli-probe/bin/beike_local buy search -c 北京 -q PROBE_QUERY --house-type bogus --json
+elapsed: 0.00s exit: 0
+---- stdout ----
+
+---- stderr ----
+

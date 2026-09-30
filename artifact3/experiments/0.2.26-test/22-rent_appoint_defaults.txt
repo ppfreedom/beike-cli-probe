@@ -1,0 +1,60 @@
+$ /Users/runner/work/beike-cli-probe/beike-cli-probe/bin/beike_local rent appoint --house-id 123456 --date 2026-01-02 --pretty
+elapsed: 0.01s exit: 0
+---- stdout ----
+{
+  "accepted": true,
+  "content": [
+    {
+      "text": "{\"probe\": true, \"tool\": \"rent_house_appointment\", \"method\": \"tools/call\", \"arguments\": {\"appoint_time\": \"2026-01-02\", \"end\": 18, \"house_id_list\": [123456], \"start\": 9}}",
+      "type": "text"
+    }
+  ],
+  "data": {
+    "arguments": {
+      "appoint_time": "2026-01-02",
+      "end": 18,
+      "house_id_list": [
+        123456
+      ],
+      "start": 9
+    },
+    "method": "tools/call",
+    "probe": true,
+    "tool": "rent_house_appointment"
+  },
+  "isError": false,
+  "items": [],
+  "list": [],
+  "message": "probe ok",
+  "result": {
+    "arguments": {
+      "appoint_time": "2026-01-02",
+      "end": 18,
+      "house_id_list": [
+        123456
+      ],
+      "start": 9
+    },
+    "method": "tools/call",
+    "probe": true,
+    "tool": "rent_house_appointment"
+  },
+  "sessionId": "probe-session-0001",
+  "session_id": "probe-session-0001",
+  "structuredContent": {
+    "arguments": {
+      "appoint_time": "2026-01-02",
+      "end": 18,
+      "house_id_list": [
+        123456
+      ],
+      "start": 9
+    },
+    "method": "tools/call",
+    "probe": true,
+    "tool": "rent_house_appointment"
+  }
+}
+
+---- stderr ----
+

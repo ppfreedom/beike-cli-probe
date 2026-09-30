@@ -1,0 +1,10 @@
+$ /Users/runner/work/beike-cli-probe/beike-cli-probe/bin/beike_local buy material --id ID1 --entity-type newhouse --city 北京 --json --pretty
+elapsed: 0.00s exit: 0
+---- stdout ----
+{
+  "data": "{\"probe\": true, \"tool\": \"entity_material\", \"method\": \"tools/call\", \"arguments\": {\"city_name\": \"北京\", \"entity_ids\": \"ID1\", \"entity_type\": \"newhouse\", \"fields\": [\"房源图片\"]}}",
+  "ok": true
+}
+
+---- stderr ----
+

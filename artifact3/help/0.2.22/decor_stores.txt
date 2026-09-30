@@ -1,0 +1,14 @@
+exit: 0
+---- stdout ----
+查询指定城市的装修门店列表
+
+Usage: beike_local_0.2.22 decor stores [OPTIONS] --city <CITY>
+
+Options:
+  -c, --city <CITY>  城市名称（必填） 示例：北京、上海、天津
+      --json         输出原始 JSON（可选）
+      --pretty       人工可读输出：表格/纯文本（默认输出单行 JSON 供 Agent 解析）
+  -h, --help         Print help
+
+---- stderr ----
+

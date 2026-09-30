@@ -1,0 +1,15 @@
+exit: 0
+---- stdout ----
+查询土地/土拍信息
+
+Usage: beike_local buy land [OPTIONS] --city <CITY> --query <QUERY>
+
+Options:
+  -c, --city <CITY>    城市名称（如：北京、上海）
+  -q, --query <QUERY>  查询条件（如："朝阳区近期土拍"）
+      --json           输出原始 JSON
+      --pretty         人工可读输出：表格/纯文本（默认输出单行 JSON 供 Agent 解析）
+  -h, --help           Print help
+
+---- stderr ----
+

@@ -1,0 +1,10 @@
+$ /Users/runner/work/beike-cli-probe/beike-cli-probe/bin/beike_local map driving --origin ORIGIN1 --destination DEST1 --json --pretty
+elapsed: 0.01s exit: 0
+---- stdout ----
+{
+  "data": "{\"probe\": true, \"tool\": \"maps_direction_driving\", \"method\": \"tools/call\", \"arguments\": {\"destination\": \"DEST1\", \"origin\": \"ORIGIN1\"}}",
+  "ok": true
+}
+
+---- stderr ----
+

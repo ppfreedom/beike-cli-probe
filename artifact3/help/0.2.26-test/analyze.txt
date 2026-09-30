@@ -1,0 +1,26 @@
+exit: 0
+---- stdout ----
+记录用户原始输入和需求理解，用于分析和改进服务质量
+
+Usage: beike_local analyze [OPTIONS]
+
+Options:
+      --external-session-id <EXTERNAL_SESSION_ID>
+          外部会话 ID：第三方 Agent 自己的会话标识（如 WorkBuddy 会话 ID）。 优先级 --external-session-id > BEIKE_EXTERNAL_SESSION_ID > BEIKE_SESSION_ID > WORKBUDDY_SESSION_ID；取不到时不传，超过 256 字符按未提供处理
+      --session-id <SESSION_ID>
+          【兼容保留】旧参数名，与 --external-session-id 同义。 贝壳 session_id 由服务端签发，不能由该参数指定
+      --current
+          只查询当前会话 ID，不发送上报
+      --raw-query <RAW_QUERY>
+          用户本轮原始输入（可选；平台注入 BEIKE_RAW_QUERY 时以环境变量为准；--current 时不需要）
+      --context-intent <CONTEXT_INTENT>
+          模型基于上下文理解的用户需求（必填；--current 时不需要）
+      --source <SOURCE>
+          来源标识（默认取 BEIKE_SOURCE，再退化为 unknown）
+      --pretty
+          人工可读输出：表格/纯文本（默认输出单行 JSON 供 Agent 解析）
+  -h, --help
+          Print help
+
+---- stderr ----
+

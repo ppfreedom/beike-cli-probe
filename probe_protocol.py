@@ -18,10 +18,14 @@ import subprocess
 import time
 
 
-def run_command(argv, timeout_seconds, log_path):
+def run_command(argv, timeout_seconds, log_path, env_override=None):
     started = time.time()
+    env = None
+    if env_override:
+        env = dict(os.environ)
+        env.update(env_override)
     try:
-        completed = subprocess.run(argv, capture_output=True, timeout=timeout_seconds, text=True)
+        completed = subprocess.run(argv, capture_output=True, timeout=timeout_seconds, text=True, env=env)
         code = completed.returncode
         stdout = completed.stdout
         stderr = completed.stderr
@@ -72,30 +76,41 @@ def main():
 
     # 第三轮的顺序是刻意的：先做与响应形状无关的字段实验，再做会往
     # ~/.beike 写状态的 VAR 系列，这样状态目录的变化只可能来自 VAR 系列。
-    experiments = [
-        ("appoint_agent", ["rent", "appoint", "--house-id", "123456", "--house-id", "654321", "--date", "2026-01-02", "--start", "8", "--end", "17", "--agent-ucid", "12345678"]),
-        ("appoint_noagent", ["rent", "appoint", "--house-id", "123456", "--date", "2026-01-02"]),
-        ("detail_bogus_entity_type", ["buy", "detail", "-c", "北京", "--id", "ID1", "--entity-type", "bogus", "--json"]),
-        ("decor_price_bogus_type", ["decor", "price", "-c", "北京", "--area", "91", "--rooms", "3", "--parlors", "2", "--cookrooms", "5", "--toilets", "7", "--house-type", "bogus", "--json"]),
-        ("decor_price_numeric_type", ["decor", "price", "-c", "北京", "--area", "91", "--rooms", "3", "--parlors", "2", "--cookrooms", "5", "--toilets", "7", "--house-type", "2", "--json"]),
-        ("search_numeric_type", ["buy", "search", "-c", "北京", "-q", "PROBE_QUERY", "--house-type", "2", "--json"]),
-        ("report_var1", ["analyze", "--external-session-id", "ESID1", "--context-intent", "CI1", "--raw-query", "VAR1", "--pretty"]),
-        ("report_var1_current", ["analyze", "--current", "--pretty"]),
-        ("report_var2", ["analyze", "--external-session-id", "ESID1", "--context-intent", "CI1", "--raw-query", "VAR2", "--pretty"]),
-        ("report_var2_current", ["analyze", "--current", "--pretty"]),
-        ("report_var3", ["analyze", "--external-session-id", "ESID1", "--context-intent", "CI1", "--raw-query", "VAR3", "--pretty"]),
-        ("report_var3_current", ["analyze", "--current", "--pretty"]),
-        ("report_var4", ["analyze", "--external-session-id", "ESID1", "--context-intent", "CI1", "--raw-query", "VAR4", "--pretty"]),
-        ("report_var4_current", ["analyze", "--current", "--pretty"]),
-        ("report_var5", ["analyze", "--external-session-id", "ESID1", "--context-intent", "CI1", "--raw-query", "VAR5", "--pretty"]),
-        ("report_var5_current", ["analyze", "--current", "--pretty"]),
+    #
+    # VAR 系列必须显式覆盖 BEIKE_RAW_QUERY：CLI 的规则是“环境变量优先于
+    # 命令行参数”，不覆盖的话 --raw-query 传不进去，服务端的选择器就失效。
+    var_reports = [
+        ("report_var1", "VAR1"),
+        ("report_var2", "VAR2"),
+        ("report_var3", "VAR3"),
+        ("report_var4", "VAR4"),
+        ("report_var5", "VAR5"),
+        ("report_var6", "VAR6"),
+        ("report_var7", "VAR7"),
     ]
+    experiments = [
+        ("appoint_agent", ["rent", "appoint", "--house-id", "123456", "--house-id", "654321", "--date", "2026-01-02", "--start", "8", "--end", "17", "--agent-ucid", "12345678"], None),
+        ("appoint_noagent", ["rent", "appoint", "--house-id", "123456", "--date", "2026-01-02"], None),
+        ("detail_bogus_entity_type", ["buy", "detail", "-c", "北京", "--id", "ID1", "--entity-type", "bogus", "--json"], None),
+        ("decor_price_bogus_type", ["decor", "price", "-c", "北京", "--area", "91", "--rooms", "3", "--parlors", "2", "--cookrooms", "5", "--toilets", "7", "--house-type", "bogus", "--json"], None),
+        ("decor_price_numeric_type", ["decor", "price", "-c", "北京", "--area", "91", "--rooms", "3", "--parlors", "2", "--cookrooms", "5", "--toilets", "7", "--house-type", "2", "--json"], None),
+        ("search_numeric_type", ["buy", "search", "-c", "北京", "-q", "PROBE_QUERY", "--house-type", "2", "--json"], None),
+    ]
+    for slug, marker in var_reports:
+        experiments.append(
+            (
+                slug,
+                ["analyze", "--external-session-id", "ESID1", "--context-intent", "CI1", "--pretty"],
+                {"BEIKE_RAW_QUERY": marker},
+            )
+        )
+        experiments.append((slug + "_current", ["analyze", "--current", "--pretty"], None))
 
-    for index, (slug, extra_args) in enumerate(experiments, start=1):
+    for index, (slug, extra_args, env_override) in enumerate(experiments, start=1):
         argv = [args.binary] + extra_args
         slug_full = "%02d-%s" % (index, slug)
         ts_before = time.time()
-        code = run_command(argv, args.timeout, os.path.join(out_root, slug_full + ".txt"))
+        code = run_command(argv, args.timeout, os.path.join(out_root, slug_full + ".txt"), env_override)
         ts_after = time.time()
         state = list_state_dir(home)
         with open(timeline_path, "a", encoding="utf-8") as handle:
@@ -105,6 +120,7 @@ def main():
                         "label": args.label,
                         "slug": slug_full,
                         "argv": argv,
+                        "env_override": env_override,
                         "exit": code,
                         "ts_before": ts_before,
                         "ts_after": ts_after,

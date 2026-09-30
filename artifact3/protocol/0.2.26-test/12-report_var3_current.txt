@@ -1,0 +1,7 @@
+$ /Users/runner/work/beike-cli-probe/beike-cli-probe/bin/beike_local analyze --current --pretty
+elapsed: 0.00s exit: 0
+---- stdout ----
+当前会话 ID: （无，将在下次上报时由服务端签发）
+
+---- stderr ----
+

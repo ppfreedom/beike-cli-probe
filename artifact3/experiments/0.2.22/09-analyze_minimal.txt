@@ -1,0 +1,11 @@
+$ /Users/runner/work/beike-cli-probe/beike-cli-probe/bin/beike_local_0.2.22 analyze --external-session-id ESID1 --context-intent CI1 --pretty
+elapsed: 0.00s exit: 2
+---- stdout ----
+
+---- stderr ----
+error: unrecognized subcommand 'analyze'
+
+Usage: beike_local_0.2.22 [OPTIONS] <COMMAND>
+
+For more information, try '--help'.
+

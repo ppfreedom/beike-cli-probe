@@ -1,0 +1,15 @@
+exit: 0
+---- stdout ----
+搜索小区
+
+Usage: beike_local_0.2.22 buy resblock [OPTIONS] --city <CITY> --query <QUERY>
+
+Options:
+  -c, --city <CITY>    城市名称（如：北京、上海）
+  -q, --query <QUERY>  查询条件（如："望京 改善型大三居 预算1000万"）
+      --json           输出原始 JSON
+      --pretty         人工可读输出：表格/纯文本（默认输出单行 JSON 供 Agent 解析）
+  -h, --help           Print help
+
+---- stderr ----
+

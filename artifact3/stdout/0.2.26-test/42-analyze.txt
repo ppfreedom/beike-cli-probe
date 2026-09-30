@@ -1,0 +1,7 @@
+$ /Users/runner/work/beike-cli-probe/beike-cli-probe/bin/beike_local analyze --external-session-id ESID1 --session-id SID1 --raw-query PROBE_RAW_QUERY --context-intent CI1 --source SRC1 --pretty
+elapsed: 0.00s exit: 1
+---- stdout ----
+
+---- stderr ----
+Error: 上报失败: unknown
+

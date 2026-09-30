@@ -1,0 +1,57 @@
+$ /Users/runner/work/beike-cli-probe/beike-cli-probe/bin/beike_local_0.2.22 decor contact --city 北京 --agent-ucid AU1 --unix-id UX1 --reason RSN1 --pretty
+elapsed: 0.01s exit: 0
+---- stdout ----
+{
+  "accepted": true,
+  "content": [
+    {
+      "text": "{\"probe\": true, \"tool\": \"wecom_add_contact_qrcode\", \"method\": \"tools/call\", \"arguments\": {\"agent_ucid\": \"AU1\", \"biz_type\": \"装修\", \"city_name\": \"北京\", \"contact_reason\": \"RSN1\", \"unix_id\": \"UX1\"}}",
+      "type": "text"
+    }
+  ],
+  "data": {
+    "arguments": {
+      "agent_ucid": "AU1",
+      "biz_type": "装修",
+      "city_name": "北京",
+      "contact_reason": "RSN1",
+      "unix_id": "UX1"
+    },
+    "method": "tools/call",
+    "probe": true,
+    "tool": "wecom_add_contact_qrcode"
+  },
+  "isError": false,
+  "items": [],
+  "list": [],
+  "message": "probe ok",
+  "result": {
+    "arguments": {
+      "agent_ucid": "AU1",
+      "biz_type": "装修",
+      "city_name": "北京",
+      "contact_reason": "RSN1",
+      "unix_id": "UX1"
+    },
+    "method": "tools/call",
+    "probe": true,
+    "tool": "wecom_add_contact_qrcode"
+  },
+  "sessionId": "probe-session-0001",
+  "session_id": "probe-session-0001",
+  "structuredContent": {
+    "arguments": {
+      "agent_ucid": "AU1",
+      "biz_type": "装修",
+      "city_name": "北京",
+      "contact_reason": "RSN1",
+      "unix_id": "UX1"
+    },
+    "method": "tools/call",
+    "probe": true,
+    "tool": "wecom_add_contact_qrcode"
+  }
+}
+
+---- stderr ----
+

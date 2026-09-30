@@ -137,8 +137,11 @@ def build_report_response(request_id, tool_arguments):
     """针对 report_user_intent 返回不同形状的响应，用于探明 CLI 的解析契约。
 
     CLI 上报时会读取服务端签发的 session_id，而它期望的字段位置未知。
-    这里用 arguments.raw_query 的值作为选择器（VAR1..VAR5），逐个变体
-    试出哪一个能被 CLI 接受，从而确定响应契约。
+    这里用 arguments.raw_query 的值作为选择器（VAR1..VAR7），逐个变体
+    试出哪一个能被 CLI 接受。VAR6/VAR7 用 text/event-stream 返回，
+    对应真实服务端可能采用的 streamable HTTP 形态。
+
+    返回 (response_dict, content_type)。
     """
     selector = str(tool_arguments.get("raw_query") or "")
     payload = {"accepted": True, "session_id": "SESS-" + selector, "message": "msg-" + selector}
@@ -149,22 +152,35 @@ def build_report_response(request_id, tool_arguments):
             "jsonrpc": "2.0",
             "id": request_id,
             "result": {"content": [{"type": "text", "text": text}]},
-        }
+        }, "application/json"
     if selector == "VAR2":
-        return {"jsonrpc": "2.0", "id": request_id, "result": dict(payload)}
+        return {"jsonrpc": "2.0", "id": request_id, "result": dict(payload)}, "application/json"
     if selector == "VAR3":
         return {
             "jsonrpc": "2.0",
             "id": request_id,
             "result": {"content": [{"type": "text", "text": text}], "accepted": True, "session_id": payload["session_id"]},
-        }
+        }, "application/json"
     if selector == "VAR4":
         response = {"jsonrpc": "2.0", "id": request_id}
         response.update(payload)
-        return response
+        return response, "application/json"
     if selector == "VAR5":
-        return {"jsonrpc": "2.0", "id": request_id, "result": {"data": payload}}
-    return None
+        return {"jsonrpc": "2.0", "id": request_id, "result": {"data": payload}}, "application/json"
+
+    if selector == "VAR6":
+        return {
+            "jsonrpc": "2.0",
+            "id": request_id,
+            "result": dict(payload),
+        }, "text/event-stream"
+    if selector == "VAR7":
+        return {
+            "jsonrpc": "2.0",
+            "id": request_id,
+            "result": {"content": [{"type": "text", "text": text}]},
+        }, "text/event-stream"
+    return None, "application/json"
 
 
 class ProbeHandler(BaseHTTPRequestHandler):
@@ -254,20 +270,24 @@ class ProbeHandler(BaseHTTPRequestHandler):
             self._send(202, b"", "application/json")
             return
 
+        content_type = "application/json"
         response = None
         if method == "tools/call":
             tool_name = str((params or {}).get("name") or "")
             tool_arguments = (params or {}).get("arguments") or {}
             if tool_name == "report_user_intent" and isinstance(tool_arguments, dict):
-                response = build_report_response(request_id, tool_arguments)
+                response, content_type = build_report_response(request_id, tool_arguments)
         if response is None:
             response = {
                 "jsonrpc": "2.0",
                 "id": request_id,
                 "result": build_result(method, params),
             }
-        payload = json.dumps(response, ensure_ascii=False).encode("utf-8")
-        self._send(200, payload, "application/json")
+        body = json.dumps(response, ensure_ascii=False)
+        if content_type == "text/event-stream":
+            # SSE 形态：真实服务端以 streamable HTTP 返回时是这种格式。
+            body = "event: message\ndata: %s\n\n" % body
+        self._send(200, body.encode("utf-8"), content_type)
 
 
 def main():

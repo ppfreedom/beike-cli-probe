@@ -1,0 +1,15 @@
+exit: 0
+---- stdout ----
+实体指代消歧（判断小区名/商圈名等属于哪一类实体）
+
+Usage: beike_local_0.2.22 buy resolve [OPTIONS] --query <QUERY>
+
+Options:
+  -q, --query <QUERY>  待消歧的实体文本（如小区名、商圈名等）
+  -c, --city <CITY>    城市名称，不传则全国范围召回 [default: ]
+      --json           输出原始 JSON
+      --pretty         人工可读输出：表格/纯文本（默认输出单行 JSON 供 Agent 解析）
+  -h, --help           Print help
+
+---- stderr ----
+

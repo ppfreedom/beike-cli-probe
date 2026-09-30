@@ -1,0 +1,17 @@
+exit: 0
+---- stdout ----
+预约看房
+
+Usage: beike_local rent appoint [OPTIONS] --house-id <HOUSE_ID>... --date <DATE>
+
+Options:
+  -i, --house-id <HOUSE_ID>...   租房房源 ID（可多个，来自 rent search 结果）
+  -d, --date <DATE>              预约日期，格式 YYYY-MM-DD（如 2026-08-01）
+  -s, --start <START>            看房开始小时，24小时制（如 9） [default: 9]
+  -e, --end <END>                看房结束小时，24小时制（如 18） [default: 18]
+  -a, --agent-ucid <AGENT_UCID>  指定经纪人 ucid（可选）
+      --pretty                   人工可读输出：表格/纯文本（默认输出单行 JSON 供 Agent 解析）
+  -h, --help                     Print help
+
+---- stderr ----
+

@@ -1,0 +1,26 @@
+==== ~/.beike 内容 ====
+==== doctor ====
+贝壳 CLI 环境诊断
+
+[✓] CLI 版本: v0.2.26
+[✓] Bearer Key: probe-du****-key  (来源: 环境变量)
+[✓] API 可达: http://127.0.0.1:8971/mcp  (1ms)
+[✓] Key 有效: 发现 30 个工具
+
+==== doctor after cache removal ====
+贝壳 CLI 环境诊断
+
+[✓] CLI 版本: v0.2.26
+[✓] Bearer Key: probe-du****-key  (来源: 环境变量)
+[✓] API 可达: http://127.0.0.1:8971/mcp  (1ms)
+[✓] Key 有效: 发现 30 个工具
+
+==== env ====
+BEIKE_SOURCE=probe
+BEIKE_EXTERNAL_SESSION_ID=probe-external-0001
+BEIKE_SESSION_ID=probe-session-0001
+WORKBUDDY_SESSION_ID=<未设置>
+BEIKE_RAW_QUERY=PROBE_RAW_QUERY
+BEIKE_MCP_BASE_URL=http://127.0.0.1:8971/mcp
+BEIKE_MCP_API_KEY=prob****-key
+疑似平台会话变量（命名包含 SESSION/THREAD/CONVERSATION/CHAT_ID，非贝壳官方变量名）: 无

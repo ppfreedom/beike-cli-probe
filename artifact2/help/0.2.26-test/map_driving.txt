@@ -1,0 +1,15 @@
+exit: 0
+---- stdout ----
+驾车路线规划
+
+Usage: beike_local map driving [OPTIONS] --origin <ORIGIN> --destination <DESTINATION>
+
+Options:
+  -o, --origin <ORIGIN>            出发点经纬度（必填） 格式：经度,纬度（中间用英文逗号分隔，无空格） 示例：116.491,39.996（北京SOHO附近） 坐标系：GCJ-02（国测局坐标系，适配国内地图）
+  -d, --destination <DESTINATION>  目的地经纬度（必填） 格式：经度,纬度（中间用英文逗号分隔，无空格） 示例：116.461,39.909（北京朝阳公园附近） 坐标系：GCJ-02（国测局坐标系，适配国内地图）
+      --json                       输出原始 JSON（可选） 返回详细的路线规划数据，包括途经道路、距离、耗时等
+      --pretty                     人工可读输出：表格/纯文本（默认输出单行 JSON 供 Agent 解析）
+  -h, --help                       Print help
+
+---- stderr ----
+

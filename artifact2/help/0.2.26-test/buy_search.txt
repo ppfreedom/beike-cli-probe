@@ -1,0 +1,16 @@
+exit: 0
+---- stdout ----
+搜索二手房 / 新房
+
+Usage: beike_local buy search [OPTIONS] --city <CITY> --query <QUERY>
+
+Options:
+  -c, --city <CITY>              城市名称（必填） 示例：北京、上海、深圳、成都
+  -q, --query <QUERY>            搜索条件（必填） 支持自由文本，如："望京两居室 500万以内"、"朝阳改善三居"等 系统会根据文本自动提取特征词进行精准搜索
+      --house-type <HOUSE_TYPE>  房源类型（可选，默认 all） 可选值： second - 仅二手房 new    - 仅新房 all    - 二手房 + 新房（默认） [default: all]
+      --json                     输出原始 JSON（可选） 加此参数时返回结构化 JSON，便于程序解析 不加此参数时返回友好的纯文本格式
+      --pretty                   人工可读输出：表格/纯文本（默认输出单行 JSON 供 Agent 解析）
+  -h, --help                     Print help
+
+---- stderr ----
+

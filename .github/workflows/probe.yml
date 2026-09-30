@@ -71,6 +71,13 @@ jobs:
           python3 probe_experiments.py --binary "$PWD/bin/beike_local" --label 0.2.26-test --suite full --capture-dir capture
           python3 probe_experiments.py --binary "$PWD/bin/beike_local_0.2.22" --label 0.2.22 --suite diff --capture-dir capture
 
+      # 第三轮：预约字段细节与上报响应的解析契约。
+      - name: Protocol experiments
+        continue-on-error: true
+        run: |
+          rm -rf "$HOME/.beike"
+          python3 probe_protocol.py --binary "$PWD/bin/beike_local" --label 0.2.26-test --capture-dir capture
+
       # 0.2.22 的全量发现放在最后，避免它的握手缓存影响前两步的请求序列。
       - name: Discover and probe 0.2.22
         continue-on-error: true

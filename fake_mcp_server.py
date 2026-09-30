@@ -92,7 +92,6 @@ def build_result(method, params):
         tool_name = str(params.get("name") or "")
         if isinstance(params.get("arguments"), dict):
             tool_arguments = params["arguments"]
-
     echo = {
         "probe": True,
         "tool": tool_name,
@@ -132,6 +131,40 @@ def build_result(method, params):
             }
         )
     return inner
+
+
+def build_report_response(request_id, tool_arguments):
+    """针对 report_user_intent 返回不同形状的响应，用于探明 CLI 的解析契约。
+
+    CLI 上报时会读取服务端签发的 session_id，而它期望的字段位置未知。
+    这里用 arguments.raw_query 的值作为选择器（VAR1..VAR5），逐个变体
+    试出哪一个能被 CLI 接受，从而确定响应契约。
+    """
+    selector = str(tool_arguments.get("raw_query") or "")
+    payload = {"accepted": True, "session_id": "SESS-" + selector, "message": "msg-" + selector}
+    text = json.dumps(payload, ensure_ascii=False)
+
+    if selector == "VAR1":
+        return {
+            "jsonrpc": "2.0",
+            "id": request_id,
+            "result": {"content": [{"type": "text", "text": text}]},
+        }
+    if selector == "VAR2":
+        return {"jsonrpc": "2.0", "id": request_id, "result": dict(payload)}
+    if selector == "VAR3":
+        return {
+            "jsonrpc": "2.0",
+            "id": request_id,
+            "result": {"content": [{"type": "text", "text": text}], "accepted": True, "session_id": payload["session_id"]},
+        }
+    if selector == "VAR4":
+        response = {"jsonrpc": "2.0", "id": request_id}
+        response.update(payload)
+        return response
+    if selector == "VAR5":
+        return {"jsonrpc": "2.0", "id": request_id, "result": {"data": payload}}
+    return None
 
 
 class ProbeHandler(BaseHTTPRequestHandler):
@@ -221,11 +254,18 @@ class ProbeHandler(BaseHTTPRequestHandler):
             self._send(202, b"", "application/json")
             return
 
-        response = {
-            "jsonrpc": "2.0",
-            "id": request_id,
-            "result": build_result(method, params),
-        }
+        response = None
+        if method == "tools/call":
+            tool_name = str((params or {}).get("name") or "")
+            tool_arguments = (params or {}).get("arguments") or {}
+            if tool_name == "report_user_intent" and isinstance(tool_arguments, dict):
+                response = build_report_response(request_id, tool_arguments)
+        if response is None:
+            response = {
+                "jsonrpc": "2.0",
+                "id": request_id,
+                "result": build_result(method, params),
+            }
         payload = json.dumps(response, ensure_ascii=False).encode("utf-8")
         self._send(200, payload, "application/json")
 

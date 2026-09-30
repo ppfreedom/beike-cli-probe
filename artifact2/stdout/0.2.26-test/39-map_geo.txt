@@ -1,0 +1,10 @@
+$ /Users/runner/work/beike-cli-probe/beike-cli-probe/bin/beike_local map geo --address ADDR1 --city 北京 --json --pretty
+elapsed: 0.00s exit: 0
+---- stdout ----
+{
+  "data": "{\"probe\": true, \"tool\": \"maps_geo\", \"method\": \"tools/call\", \"arguments\": {\"address\": \"ADDR1\", \"city\": \"北京\"}}",
+  "ok": true
+}
+
+---- stderr ----
+

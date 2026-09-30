@@ -1,0 +1,17 @@
+exit: 0
+---- stdout ----
+获取经纪人加微二维码
+
+Usage: beike_local buy contact [OPTIONS] --city <CITY>
+
+Options:
+  -c, --city <CITY>              城市名称（如：北京、上海）
+      --biz <BIZ>                业务类型：新房 / 二手房（默认二手房） [default: 二手房]
+      --agent-ucid <AGENT_UCID>  经纪人 ucid（来自 agent_search 返回的实体 id，生成专属加微二维码）
+      --unix-id <UNIX_ID>        可选；agent_search 返回的 unix_id（搜索会话标识，用于服务端防遍历校验），有则传入
+  -r, --reason <REASON>          加微原因描述（可选）
+      --pretty                   人工可读输出：表格/纯文本（默认输出单行 JSON 供 Agent 解析）
+  -h, --help                     Print help
+
+---- stderr ----
+

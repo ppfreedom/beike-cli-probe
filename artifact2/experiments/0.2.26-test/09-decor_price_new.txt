@@ -1,0 +1,10 @@
+$ /Users/runner/work/beike-cli-probe/beike-cli-probe/bin/beike_local decor price -c 北京 --area 92 --rooms 4 --parlors 3 --cookrooms 6 --toilets 8 --house-type new --json
+elapsed: 0.00s exit: 0
+---- stdout ----
+{
+  "data": "{\"probe\": true, \"tool\": \"decor_price_query\", \"method\": \"tools/call\", \"arguments\": {\"area\": 92.0, \"city_name\": \"北京\", \"cookroom_cnt\": 6, \"house_type\": 1, \"parlor_cnt\": 3, \"room_cnt\": 4, \"toilet_cnt\": 8}}",
+  "ok": true
+}
+
+---- stderr ----
+

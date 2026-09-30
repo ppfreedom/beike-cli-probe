@@ -1,0 +1,16 @@
+exit: 0
+---- stdout ----
+查看房源或小区详情
+
+Usage: beike_local_0.2.22 buy detail [OPTIONS] --id <ID>... --city <CITY>
+
+Options:
+  -i, --id <ID>...                 实体 ID（必填，可指定多个） 示例：beike buy detail -c 北京 --id abc123 --id def456 支持一次查询多个房源/小区的详细信息（包括图片、房源描述等）
+  -t, --entity-type <ENTITY_TYPE>  实体类型（可选，默认 house） 可选值： house    - 二手房房源（默认） newhouse - 新房房源 resblock - 小区/楼盘 [default: house]
+  -c, --city <CITY>                城市名称（必填）
+      --json                       输出原始 JSON（可选）
+      --pretty                     人工可读输出：表格/纯文本（默认输出单行 JSON 供 Agent 解析）
+  -h, --help                       Print help
+
+---- stderr ----
+

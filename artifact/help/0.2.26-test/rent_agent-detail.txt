@@ -1,0 +1,15 @@
+exit: 0
+---- stdout ----
+查看租赁经纪人详情及其服务房源
+
+Usage: beike_local rent agent-detail [OPTIONS] --id <ID>... --city <CITY>
+
+Options:
+  -i, --id <ID>...   租赁经纪人 ID（可多个，来自 rent agent 返回结果）
+  -c, --city <CITY>  城市名称（如：北京）
+      --json         输出原始 JSON
+      --pretty       人工可读输出：表格/纯文本（默认输出单行 JSON 供 Agent 解析）
+  -h, --help         Print help
+
+---- stderr ----
+

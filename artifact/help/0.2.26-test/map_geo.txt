@@ -1,0 +1,15 @@
+exit: 0
+---- stdout ----
+地址转经纬度坐标
+
+Usage: beike_local map geo [OPTIONS] --address <ADDRESS>
+
+Options:
+  -a, --address <ADDRESS>  地址文本（必填） 示例："北京市朝阳区望京SOHO"、"上海浦东新区世纪大道"等 支持完整的城市+区+街道+建筑名称，也可以只输入部分地址
+  -c, --city <CITY>        指定查询城市（可选） 当地址中城市信息不清楚时，可显式指定城市以提高准确度 示例：beike map geo -a "朝阳区望京SOHO" --city 北京
+      --json               输出原始 JSON（可选） 返回结构化数据含：经度、纬度、精度等级等
+      --pretty             人工可读输出：表格/纯文本（默认输出单行 JSON 供 Agent 解析）
+  -h, --help               Print help
+
+---- stderr ----
+

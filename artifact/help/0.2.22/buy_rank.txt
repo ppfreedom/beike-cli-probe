@@ -1,0 +1,16 @@
+exit: 0
+---- stdout ----
+查询热门房源/小区榜单
+
+Usage: beike_local_0.2.22 buy rank [OPTIONS] --city <CITY>
+
+Options:
+  -c, --city <CITY>            城市名称（如：北京、上海）
+  -q, --query <QUERY>          查询条件，可选（如："朝阳区热门二手房"） [default: 热门]
+      --rank-type <RANK_TYPE>  榜单类型：house（房源榜，默认）/ resblock（小区榜） [default: house]
+      --json                   输出原始 JSON
+      --pretty                 人工可读输出：表格/纯文本（默认输出单行 JSON 供 Agent 解析）
+  -h, --help                   Print help
+
+---- stderr ----
+

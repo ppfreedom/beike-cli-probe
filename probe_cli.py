@@ -262,7 +262,9 @@ def main():
         argv, injected = build_command(args.binary, path, options)
         slug = "%02d-%s" % (index, "_".join(path))
         log_path = os.path.join(out_root, slug + ".txt")
+        ts_before = time.time()
         code, stdout, stderr = run_command(argv, args.timeout, log_path)
+        ts_after = time.time()
         with open(os.path.join(capture_dir, "commands.jsonl"), "a", encoding="utf-8") as handle:
             handle.write(
                 json.dumps(
@@ -272,7 +274,8 @@ def main():
                         "argv": argv,
                         "injected": injected,
                         "exit": code,
-                        "ts": time.time(),
+                        "ts_before": ts_before,
+                        "ts_after": ts_after,
                     },
                     ensure_ascii=False,
                 )

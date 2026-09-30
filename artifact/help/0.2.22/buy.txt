@@ -1,0 +1,31 @@
+exit: 0
+---- stdout ----
+买房：搜索二手房/新房、详情、加微
+
+Usage: beike_local_0.2.22 buy [OPTIONS] <COMMAND>
+
+Commands:
+  search    搜索二手房 / 新房
+  detail    查看房源或小区详情
+  material  查看房源图片
+  sold      查询成交记录
+  contact   获取经纪人加微二维码
+  agent     搜索经纪人
+  resblock  搜索小区
+  market    查询二手房市场行情
+  plate     搜索板块/商圈
+  school    搜索学校
+  district  查询学区范围
+  rank      查询热门房源/小区榜单
+  store     搜索门店
+  land      查询土地/土拍信息
+  unready   查询小区未上架房源
+  resolve   实体指代消歧（判断小区名/商圈名等属于哪一类实体）
+  help      Print this message or the help of the given subcommand(s)
+
+Options:
+      --pretty  人工可读输出：表格/纯文本（默认输出单行 JSON 供 Agent 解析）
+  -h, --help    Print help
+
+---- stderr ----
+

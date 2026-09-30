@@ -1,0 +1,14 @@
+$ /Users/runner/work/beike-cli-probe/beike-cli-probe/bin/beike_local env --pretty
+elapsed: 0.00s exit: 0
+---- stdout ----
+BEIKE_SOURCE=probe
+BEIKE_EXTERNAL_SESSION_ID=probe-external-0001
+BEIKE_SESSION_ID=probe-session-0001
+WORKBUDDY_SESSION_ID=<未设置>
+BEIKE_RAW_QUERY=PROBE_RAW_QUERY
+BEIKE_MCP_BASE_URL=http://127.0.0.1:8971/mcp
+BEIKE_MCP_API_KEY=prob****-key
+疑似平台会话变量（命名包含 SESSION/THREAD/CONVERSATION/CHAT_ID，非贝壳官方变量名）: 无
+
+---- stderr ----
+

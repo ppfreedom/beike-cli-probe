@@ -1,0 +1,14 @@
+==== doctor ====
+贝壳 CLI 环境诊断
+
+[✓] CLI 版本: v0.2.26
+[✓] Bearer Key: probe-du****-key  (来源: 环境变量)
+[✓] API 可达: http://127.0.0.1:8971/mcp  (0ms)
+[✓] Key 有效: 发现 30 个工具
+
+==== version ====
+error: unrecognized subcommand 'version'
+
+Usage: beike_local [OPTIONS] [COMMAND]
+
+For more information, try '--help'.

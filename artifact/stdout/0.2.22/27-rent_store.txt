@@ -1,0 +1,10 @@
+$ /Users/runner/work/beike-cli-probe/beike-cli-probe/bin/beike_local_0.2.22 rent store --city 北京 --query PROBE_QUERY --json --pretty
+elapsed: 0.02s exit: 0
+---- stdout ----
+{
+  "data": "{\"probe\": true, \"tool\": \"store_search\", \"method\": \"tools/call\", \"arguments\": {\"city_name\": \"北京\", \"query\": \"PROBE_QUERY\"}}",
+  "ok": true
+}
+
+---- stderr ----
+

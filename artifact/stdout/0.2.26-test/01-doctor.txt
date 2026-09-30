@@ -1,0 +1,13 @@
+$ /Users/runner/work/beike-cli-probe/beike-cli-probe/bin/beike_local doctor --pretty
+elapsed: 0.01s exit: 0
+---- stdout ----
+贝壳 CLI 环境诊断
+
+[✓] CLI 版本: v0.2.26
+[✓] Bearer Key: probe-du****-key  (来源: 环境变量)
+[✓] API 可达: http://127.0.0.1:8971/mcp  (2ms)
+[✓] Key 有效: 发现 30 个工具
+
+
+---- stderr ----
+

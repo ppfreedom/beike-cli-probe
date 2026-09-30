@@ -1,0 +1,16 @@
+exit: 0
+---- stdout ----
+获取装修顾问加微二维码
+
+Usage: beike_local_0.2.22 decor contact [OPTIONS] --city <CITY>
+
+Options:
+  -c, --city <CITY>              城市名称（如：北京、上海）
+      --agent-ucid <AGENT_UCID>  顾问 ucid（来自 agent_search 返回的实体 id，生成专属加微二维码）
+      --unix-id <UNIX_ID>        agent_search 返回的 unix_id（搜索会话标识，指定顾问时必填，用于服务端校验防遍历）
+  -r, --reason <REASON>          加微原因描述（可选）
+      --pretty                   人工可读输出：表格/纯文本（默认输出单行 JSON 供 Agent 解析）
+  -h, --help                     Print help
+
+---- stderr ----
+

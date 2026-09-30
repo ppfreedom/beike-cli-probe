@@ -1,0 +1,102 @@
+name: beike-cli-probe
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  probe:
+    # macos-14 是 arm64 运行器，与仓库里的 darwin-arm64 二进制架构一致。
+    runs-on: macos-14
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Prepare binaries
+        run: |
+          set -x
+          uname -a
+          ls -la bin
+          for f in bin/*; do
+            chmod +x "$f"
+            xattr -dr com.apple.quarantine "$f" || true
+            codesign --force --sign - "$f" || true
+            codesign -dv "$f" 2>&1 || true
+            file "$f" || true
+          done
+
+      - name: Start fake MCP server
+        run: |
+          mkdir -p capture
+          python3 fake_mcp_server.py --port 8971 --capture-dir capture \
+            > capture/server-stdout.log 2>&1 &
+          for i in $(seq 1 30); do
+            if python3 - <<'PY'
+          import socket
+          s = socket.socket()
+          s.settimeout(1)
+          try:
+              s.connect(("127.0.0.1", 8971))
+              raise SystemExit(0)
+          except OSError:
+              raise SystemExit(1)
+          finally:
+              s.close()
+          PY
+            then echo "server ready"; break; fi
+            sleep 1
+          done
+
+      - name: Run probe against 0.2.26-test
+        continue-on-error: true
+        env:
+          BEIKE_MCP_BASE_URL: http://127.0.0.1:8971/mcp
+          BEIKE_MCP_API_KEY: probe-dummy-key
+          BEIKE_SKIP_UPDATE_CHECK: "1"
+          BEIKE_UPDATE_MANIFEST_URL: http://127.0.0.1:8971/manifest.json
+          BEIKE_INSTALL_URL: http://127.0.0.1:8971/install.sh
+          BEIKE_SOURCE: probe
+          BEIKE_SESSION_ID: probe-session-0001
+          BEIKE_EXTERNAL_SESSION_ID: probe-external-0001
+          BEIKE_RAW_QUERY: PROBE_RAW_QUERY
+        run: |
+          python3 probe_cli.py --binary "$PWD/bin/beike_local" --label 0.2.26-test --capture-dir capture
+
+      - name: Run probe against 0.2.22
+        continue-on-error: true
+        env:
+          BEIKE_MCP_BASE_URL: http://127.0.0.1:8971/mcp
+          BEIKE_MCP_API_KEY: probe-dummy-key
+          BEIKE_SKIP_UPDATE_CHECK: "1"
+          BEIKE_UPDATE_MANIFEST_URL: http://127.0.0.1:8971/manifest.json
+          BEIKE_INSTALL_URL: http://127.0.0.1:8971/install.sh
+          BEIKE_SOURCE: probe
+          BEIKE_SESSION_ID: probe-session-0001
+          BEIKE_EXTERNAL_SESSION_ID: probe-external-0001
+          BEIKE_RAW_QUERY: PROBE_RAW_QUERY
+        run: |
+          python3 probe_cli.py --binary "$PWD/bin/beike_local_0.2.22" --label 0.2.22 --capture-dir capture
+
+      - name: Collect diagnostics
+        continue-on-error: true
+        env:
+          BEIKE_MCP_BASE_URL: http://127.0.0.1:8971/mcp
+          BEIKE_MCP_API_KEY: probe-dummy-key
+          BEIKE_SKIP_UPDATE_CHECK: "1"
+        run: |
+          {
+            echo "==== doctor ===="
+            ./bin/beike_local doctor 2>&1 || true
+            echo "==== version ===="
+            ./bin/beike_local version 2>&1 || true
+          } | tee capture/diagnostics.txt
+
+      - name: Upload capture
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: beike-capture
+          path: capture
+          retention-days: 5

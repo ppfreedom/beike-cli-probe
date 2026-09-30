@@ -1,0 +1,20 @@
+exit: 0
+---- stdout ----
+查询装修套餐报价
+
+Usage: beike_local_0.2.22 decor price [OPTIONS] --city <CITY> --area <AREA> --rooms <ROOMS> --parlors <PARLORS> --cookrooms <COOKROOMS> --toilets <TOILETS>
+
+Options:
+  -c, --city <CITY>              城市名称（必填） 示例：北京、上海、天津
+      --area <AREA>              房屋建筑面积，单位平方米（必填） 示例：90
+      --rooms <ROOMS>            卧室数量（必填） 示例：2
+      --parlors <PARLORS>        客厅数量（必填） 示例：1
+      --cookrooms <COOKROOMS>    厨房数量（必填） 示例：1
+      --toilets <TOILETS>        卫生间数量（必填） 示例：1
+      --house-type <HOUSE_TYPE>  房屋类型：new（新房）/ old（老房/二手房） [default: new]
+      --json                     输出原始 JSON（可选）
+      --pretty                   人工可读输出：表格/纯文本（默认输出单行 JSON 供 Agent 解析）
+  -h, --help                     Print help
+
+---- stderr ----
+

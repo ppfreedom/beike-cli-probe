@@ -1,0 +1,19 @@
+exit: 0
+---- stdout ----
+卖房查询：查看名下挂牌房源、房源动态、加微
+
+Usage: beike_local sell [OPTIONS] <COMMAND>
+
+Commands:
+  list     查询名下所有挂牌房源
+  dynamic  查询指定房源的历史动态（价格变化、带看记录等）
+  agent    搜索经纪人
+  contact  获取卖房经纪人加微二维码
+  help     Print this message or the help of the given subcommand(s)
+
+Options:
+      --pretty  人工可读输出：表格/纯文本（默认输出单行 JSON 供 Agent 解析）
+  -h, --help    Print help
+
+---- stderr ----
+

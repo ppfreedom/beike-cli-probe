@@ -1,0 +1,9 @@
+$ /Users/runner/work/beike-cli-probe/beike-cli-probe/bin/beike_local_0.2.22 rent appoint --house-id P_HOUSE_ID --date 2026-01-15 --start 2026-01-01 --end 2026-01-31 --agent-ucid AU1 --pretty
+elapsed: 0.00s exit: 2
+---- stdout ----
+
+---- stderr ----
+error: invalid value 'P_HOUSE_ID' for '--house-id <HOUSE_ID>...': invalid digit found in string
+
+For more information, try '--help'.
+

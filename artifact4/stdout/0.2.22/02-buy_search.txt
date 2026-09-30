@@ -1,0 +1,6 @@
+$ /Users/runner/work/beike-cli-probe/beike-cli-probe/bin/beike_local_0.2.22 buy search --city 北京 --query PROBE_QUERY --house-type old --json --pretty
+elapsed: 0.01s exit: 0
+---- stdout ----
+
+---- stderr ----
+

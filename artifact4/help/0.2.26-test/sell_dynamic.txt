@@ -1,0 +1,15 @@
+exit: 0
+---- stdout ----
+查询指定房源的历史动态（价格变化、带看记录等）
+
+Usage: beike_local sell dynamic [OPTIONS] --house-code <HOUSE_CODE>
+
+Options:
+      --house-code <HOUSE_CODE>  房源编码（必填，来自 beike owner list 结果中的 houseCode 字段）
+  -c, --city <CITY>              房源所在城市（可选，来自 beike owner list 结果中的 cityName 字段）
+      --json                     输出原始 JSON（可选）
+      --pretty                   人工可读输出：表格/纯文本（默认输出单行 JSON 供 Agent 解析）
+  -h, --help                     Print help
+
+---- stderr ----
+

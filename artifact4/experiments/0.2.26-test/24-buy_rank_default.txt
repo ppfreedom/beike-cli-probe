@@ -1,0 +1,10 @@
+$ /Users/runner/work/beike-cli-probe/beike-cli-probe/bin/beike_local buy rank -c 北京 --json
+elapsed: 0.00s exit: 0
+---- stdout ----
+{
+  "data": "{\"probe\": true, \"tool\": \"house_rank_search\", \"method\": \"tools/call\", \"arguments\": {\"city_name\": \"北京\", \"query\": \"热门\"}}",
+  "ok": true
+}
+
+---- stderr ----
+

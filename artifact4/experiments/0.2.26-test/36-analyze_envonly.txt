@@ -1,0 +1,7 @@
+$ /Users/runner/work/beike-cli-probe/beike-cli-probe/bin/beike_local analyze --context-intent CI1 --pretty
+elapsed: 0.01s exit: 1
+---- stdout ----
+
+---- stderr ----
+Error: 上报失败: unknown
+

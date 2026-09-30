@@ -1,0 +1,10 @@
+$ /Users/runner/work/beike-cli-probe/beike-cli-probe/bin/beike_local sell list --city 北京 --json --pretty
+elapsed: 0.00s exit: 0
+---- stdout ----
+{
+  "data": "{\"probe\": true, \"tool\": \"get_my_house_list\", \"method\": \"tools/call\", \"arguments\": {\"city_name\": \"北京\"}}",
+  "ok": true
+}
+
+---- stderr ----
+

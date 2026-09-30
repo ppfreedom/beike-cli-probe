@@ -1,0 +1,15 @@
+exit: 0
+---- stdout ----
+搜索经纪人
+
+Usage: beike_local sell agent [OPTIONS] --city <CITY> --query <QUERY>
+
+Options:
+  -c, --city <CITY>    城市名称（如：北京、上海）
+  -q, --query <QUERY>  查询条件（如："熟悉学区房定价的经纪人"）
+      --json           输出原始 JSON
+      --pretty         人工可读输出：表格/纯文本（默认输出单行 JSON 供 Agent 解析）
+  -h, --help           Print help
+
+---- stderr ----
+

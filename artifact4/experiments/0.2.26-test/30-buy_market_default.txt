@@ -1,0 +1,12 @@
+$ /Users/runner/work/beike-cli-probe/beike-cli-probe/bin/beike_local buy market -c 北京 --json
+elapsed: 0.00s exit: 2
+---- stdout ----
+
+---- stderr ----
+error: the following required arguments were not provided:
+  --query <QUERY>
+
+Usage: beike_local buy market --city <CITY> --query <QUERY> --json
+
+For more information, try '--help'.
+

@@ -1,0 +1,17 @@
+exit: 0
+---- stdout ----
+公交地铁路线规划
+
+Usage: beike_local_0.2.22 map transit [OPTIONS] --origin <ORIGIN> --destination <DESTINATION> --city <CITY> --cityd <CITYD>
+
+Options:
+  -o, --origin <ORIGIN>            出发点经纬度（必填） 格式：经度,纬度（中间用英文逗号分隔，无空格） 示例：116.491,39.996 坐标系：GCJ-02（国测局坐标系，适配国内地图）
+  -d, --destination <DESTINATION>  目的地经纬度（必填） 格式：经度,纬度（中间用英文逗号分隔，无空格） 示例：116.461,39.909 坐标系：GCJ-02（国测局坐标系，适配国内地图）
+  -f, --city <CITY>                起点城市（必填） 示例：北京、上海 用于标识出发地所在城市，跨城公交规划时必需明确
+  -t, --cityd <CITYD>              终点城市（必填） 示例：北京、上海 用于标识目的地所在城市，跨城公交规划时必需明确 注：同城规划时 --city 和 --cityd 可设为相同值
+      --json                       输出原始 JSON（可选） 返回详细的公交路线方案，包括换乘信息、耗时等
+      --pretty                     人工可读输出：表格/纯文本（默认输出单行 JSON 供 Agent 解析）
+  -h, --help                       Print help
+
+---- stderr ----
+

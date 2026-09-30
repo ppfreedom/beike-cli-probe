@@ -1,0 +1,51 @@
+$ /Users/runner/work/beike-cli-probe/beike-cli-probe/bin/beike_local buy contact -c 北京 --biz 二手房 --agent-ucid AU1 --pretty
+elapsed: 0.00s exit: 0
+---- stdout ----
+{
+  "accepted": true,
+  "content": [
+    {
+      "text": "{\"probe\": true, \"tool\": \"wecom_add_contact_qrcode\", \"method\": \"tools/call\", \"arguments\": {\"agent_ucid\": \"AU1\", \"biz_type\": \"二手房\", \"city_name\": \"北京\"}}",
+      "type": "text"
+    }
+  ],
+  "data": {
+    "arguments": {
+      "agent_ucid": "AU1",
+      "biz_type": "二手房",
+      "city_name": "北京"
+    },
+    "method": "tools/call",
+    "probe": true,
+    "tool": "wecom_add_contact_qrcode"
+  },
+  "isError": false,
+  "items": [],
+  "list": [],
+  "message": "probe ok",
+  "result": {
+    "arguments": {
+      "agent_ucid": "AU1",
+      "biz_type": "二手房",
+      "city_name": "北京"
+    },
+    "method": "tools/call",
+    "probe": true,
+    "tool": "wecom_add_contact_qrcode"
+  },
+  "sessionId": "probe-session-0001",
+  "session_id": "probe-session-0001",
+  "structuredContent": {
+    "arguments": {
+      "agent_ucid": "AU1",
+      "biz_type": "二手房",
+      "city_name": "北京"
+    },
+    "method": "tools/call",
+    "probe": true,
+    "tool": "wecom_add_contact_qrcode"
+  }
+}
+
+---- stderr ----
+

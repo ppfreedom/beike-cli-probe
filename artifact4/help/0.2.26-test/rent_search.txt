@@ -1,0 +1,15 @@
+exit: 0
+---- stdout ----
+搜索在租房源
+
+Usage: beike_local rent search [OPTIONS] --city <CITY> --query <QUERY>
+
+Options:
+  -c, --city <CITY>    城市名称（必填） 示例：北京、上海、深圳、杭州等
+  -q, --query <QUERY>  搜索条件（必填） 支持自由文本，如："望京一居室 5000元以内"、"朝阳近地铁"等 系统会根据文本自动提取特征词进行精准匹配
+      --json           输出原始 JSON（可选） 加此参数时返回结构化 JSON，便于程序解析 不加此参数时返回友好的纯文本格式
+      --pretty         人工可读输出：表格/纯文本（默认输出单行 JSON 供 Agent 解析）
+  -h, --help           Print help
+
+---- stderr ----
+
